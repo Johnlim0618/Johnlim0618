@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>False Positive Tuning Exercise | John Lim</title>
-  <meta name="description" content="False Positive Tuning Exercise project page for John Lim." />
+  <meta name="description" content="False Positive Tuning Exercise by John Lim" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,16 +12,64 @@
 </head>
 <body>
   <div class="page-glow"></div>
+
   <div class="detail-wrap">
     <a class="back-link" href="index.html#projects">← Back to Projects</a>
+
     <article class="detail-card">
       <h1>False Positive Tuning Exercise</h1>
-      <p>This page shows a simple triage note format for documenting why an alert looked suspicious, what context was reviewed, and why it was ultimately classified as benign.</p>
-      <h3>What this project shows</h3>
+
+      <p>
+        This project focused on understanding how suspicious-looking activity can still turn out to be benign,
+        and why tuning detections is necessary to improve signal quality without removing useful coverage.
+      </p>
+
+      <h3>Overview</h3>
+      <p>
+        In a SOC, not every alert is a real incident. This exercise helped me think through how an analyst should respond
+        to a detection that looks serious at first, gather the right context, and decide whether the alert should be escalated,
+        closed as benign, or tuned for the future.
+      </p>
+
+      <h3>Objectives</h3>
       <ul>
-        <li>Structured triage documentation</li><li>Context-driven investigation</li><li>Tuning mindset for analysts</li>
+        <li>Understand how false positives happen in real detection workflows</li>
+        <li>Practice structured triage and documentation</li>
+        <li>Learn how tuning can improve analyst efficiency without losing useful signal</li>
       </ul>
-      <h3>Example artifact</h3>
+
+      <h3>Tools Used</h3>
+      <ul>
+        <li>Splunk</li>
+        <li>Windows process and event context</li>
+        <li>Basic triage documentation workflow</li>
+        <li>Detection engineering concepts</li>
+      </ul>
+
+      <h3>Environment</h3>
+      <p>
+        This exercise was based on reviewing suspicious process behavior in a lab environment and thinking through
+        how a detection might fire on activity that appears malicious at first glance. The goal was not just to close the alert,
+        but to understand why it fired and how future noise could be reduced.
+      </p>
+
+      <h3>What I Did</h3>
+      <ul>
+        <li>Reviewed an alert path that resembled suspicious LSASS-related access behavior</li>
+        <li>Looked at process context, parent-child relationships, and trusted binary indicators</li>
+        <li>Compared the activity against expected host behavior and surrounding telemetry</li>
+        <li>Documented why the alert appeared suspicious and what evidence supported a benign conclusion</li>
+      </ul>
+
+      <h3>Key Findings</h3>
+      <ul>
+        <li>Single-event detections can be noisy when environment context is missing</li>
+        <li>Benign system behavior can look malicious if a rule is too broad</li>
+        <li>Tuning should be evidence-based and as narrow as possible</li>
+        <li>Analysts need to document why they trust a tuning decision</li>
+      </ul>
+
+      <h3>Example Artifact</h3>
       <pre><code>Alert: Suspicious LSASS Access
 Initial reason: Process attempted access pattern associated with credential dumping
 Reviewed:
@@ -33,6 +81,20 @@ Conclusion:
 Benign system activity from trusted process path
 Tuning idea:
 Exclude signed trusted process under validated parent/host conditions</code></pre>
+
+      <h3>What I Learned</h3>
+      <p>
+        This project taught me that a good analyst should not just ask “is this malicious?” but also
+        “why did this alert fire?” and “how can we improve this detection without weakening it?”
+        That mindset is important for reducing alert fatigue and making investigations more efficient.
+      </p>
+
+      <h3>Next Improvements</h3>
+      <ul>
+        <li>Add sample queries showing how the alert was investigated</li>
+        <li>Document multiple false positive scenarios instead of just one</li>
+        <li>Show before-and-after tuning examples with improved logic</li>
+      </ul>
     </article>
   </div>
 </body>
